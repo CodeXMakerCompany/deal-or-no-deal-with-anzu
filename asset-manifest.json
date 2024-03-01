@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/deal-or-no-deal-with-anzu/static/css/main.e6c13ad2.css",
+    "main.js": "/deal-or-no-deal-with-anzu/static/js/main.dc39dd78.js",
+    "static/js/453.e8674d18.chunk.js": "/deal-or-no-deal-with-anzu/static/js/453.e8674d18.chunk.js",
+    "index.html": "/deal-or-no-deal-with-anzu/index.html",
+    "main.e6c13ad2.css.map": "/deal-or-no-deal-with-anzu/static/css/main.e6c13ad2.css.map",
+    "main.dc39dd78.js.map": "/deal-or-no-deal-with-anzu/static/js/main.dc39dd78.js.map",
+    "453.e8674d18.chunk.js.map": "/deal-or-no-deal-with-anzu/static/js/453.e8674d18.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.dc39dd78.js"
+  ]
+}
