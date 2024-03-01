@@ -1,26 +1,66 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Game.tsx
+import React, { useState } from 'react';
+import { Board } from './components/board';
+import { DealButton, NoDealButton } from './components/dealOrNoDealButton';
+import { Result } from './components/result';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface CaseInteface {
+  value: number
+  selected: boolean
 }
 
-export default App;
+const App: React.FC = () => {
+  const casesList = Array.from({ length: 13 }, (_, i) => ({ value: i + 1, selected: false }));
+  const [cases, setCases] = useState<CaseInteface[]>(casesList);
+  const [playerCase, setPlayerCase] = useState<number>(15);
+  const [selectedCase, setSelectedCase] = useState<number>(1);
+  const [bankersOffer, setBankersOffer] = useState<number | null>(null);
+  const [gameOver, setGameOver] = useState<boolean>(false);
+
+  const selectCase = (index: number) => {
+    setCases(
+      cases.map( (cs, idx) => {
+        if (idx === index) {
+          return { 
+            ...cs,
+            selected: !cs.selected
+          }
+        }
+
+        return cs
+      } )
+    )
+  };
+
+  const takeDeal = () => {
+    if (bankersOffer !== null) {
+      setGameOver(true);
+    }
+  };
+
+  const continuePlaying = () => {
+    setSelectedCase(1);
+    setBankersOffer(null);
+  };
+
+  return (
+    <div>
+      <Board
+        cases={cases}
+        playerCase={playerCase}
+        selectedCase={selectedCase}
+        onSelectCase={selectCase}
+        gameOver={gameOver}
+      />
+      {selectedCase !== null && !gameOver && (
+        <>
+          <DealButton onClick={takeDeal} />
+          <NoDealButton onClick={continuePlaying} />
+        </>
+      )}
+      {gameOver && <Result bankersOffer={bankersOffer} />}
+    </div>
+  );
+};
+
+export default App
